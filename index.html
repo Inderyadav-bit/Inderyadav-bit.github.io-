@@ -4,19 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Inderjeet Yadav</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Playfair+Display:ital,wght@1,500&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
-        --bg: #ebebeb;
-        --text: #151515;
-        --muted: #5f5f5f;
-        --line: #1f1f1f;
+        --bg: #f2f4f8;
+        --card: rgba(255, 255, 255, 0.72);
+        --text: #0f172a;
+        --muted: #475569;
+        --accent: #0176d3;
+        --line: #0ea5e9;
+        --ring: rgba(2, 132, 199, 0.22);
       }
 
       body.dark {
-        --bg: #121212;
-        --text: #f3f3f3;
-        --muted: #b8b8b8;
-        --line: #f3f3f3;
+        --bg: #0b1220;
+        --card: rgba(15, 23, 42, 0.66);
+        --text: #e2e8f0;
+        --muted: #a8b3c7;
+        --accent: #6ab7ff;
+        --line: #7dd3fc;
+        --ring: rgba(125, 211, 252, 0.2);
       }
 
       * {
@@ -26,12 +38,15 @@
       body {
         margin: 0;
         min-height: 100vh;
+        padding: 24px;
         display: grid;
         place-items: center;
-        padding: 24px;
-        background: var(--bg);
+        font-family: "Manrope", "Segoe UI", sans-serif;
         color: var(--text);
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background:
+          radial-gradient(circle at 12% 12%, rgba(1, 118, 211, 0.18), transparent 36%),
+          radial-gradient(circle at 88% 85%, rgba(14, 165, 233, 0.15), transparent 34%),
+          linear-gradient(145deg, var(--bg), color-mix(in srgb, var(--bg) 82%, #d9e5f4 18%));
         transition: background-color 0.25s ease, color 0.25s ease;
       }
 
@@ -39,76 +54,84 @@
         position: fixed;
         top: 24px;
         right: 24px;
-        border: 1px solid #cfcfcf;
+        width: 46px;
+        height: 46px;
         border-radius: 12px;
-        background: transparent;
+        border: 1px solid color-mix(in srgb, var(--muted) 30%, white 70%);
+        background: var(--card);
+        backdrop-filter: blur(8px);
         color: var(--muted);
-        width: 44px;
-        height: 44px;
-        font-size: 22px;
-        line-height: 1;
+        font-size: 21px;
         cursor: pointer;
       }
 
       .hero {
-        width: min(920px, 100%);
+        width: min(1050px, 100%);
         text-align: center;
-        transform: translateY(-6vh);
+        padding: clamp(26px, 4vw, 56px);
+        border-radius: 28px;
+        background: var(--card);
+        backdrop-filter: blur(10px);
+        box-shadow:
+          0 14px 36px -18px rgba(15, 23, 42, 0.4),
+          0 0 0 1px var(--ring) inset;
       }
 
       .welcome {
         margin: 0;
-        letter-spacing: 5px;
-        font-size: clamp(18px, 2vw, 42px);
-        font-weight: 500;
-        color: var(--muted);
+        letter-spacing: 0.44em;
+        font-size: clamp(14px, 1.1vw, 18px);
+        color: var(--accent);
+        font-weight: 700;
       }
 
       h1 {
-        margin: 16px 0 10px;
-        font-size: clamp(48px, 7vw, 108px);
-        line-height: 1.05;
-        font-weight: 700;
+        margin: 18px 0 10px;
+        font-size: clamp(46px, 8vw, 104px);
+        line-height: 1.02;
+        font-weight: 800;
       }
 
       .subtitle {
         margin: 0;
-        font-size: clamp(24px, 3vw, 52px);
+        font-size: clamp(20px, 3vw, 48px);
         color: var(--muted);
         font-weight: 700;
       }
 
       .rule {
-        width: clamp(88px, 7vw, 180px);
-        height: 7px;
-        margin: 44px auto;
-        border-radius: 4px;
-        background: var(--line);
+        width: clamp(92px, 10vw, 170px);
+        height: 6px;
+        margin: 34px auto;
+        border-radius: 999px;
+        background: linear-gradient(90deg, transparent, var(--line), transparent);
       }
 
       .quote {
         margin: 0 auto;
-        max-width: 980px;
+        max-width: 960px;
         color: var(--muted);
-        font-size: clamp(22px, 2.9vw, 56px);
-        line-height: 1.4;
-        font-style: italic;
+        font: italic 500 clamp(26px, 3.1vw, 55px) / 1.36 "Playfair Display", Georgia, serif;
       }
 
       .tagline {
         margin-top: 22px;
-        font-size: clamp(22px, 2.6vw, 50px);
-        color: var(--muted);
+        font-size: clamp(19px, 2.2vw, 35px);
+        color: color-mix(in srgb, var(--muted) 92%, var(--accent) 8%);
+        font-weight: 600;
       }
 
-      @media (max-width: 700px) {
+      @media (max-width: 640px) {
+        body {
+          padding: 14px;
+        }
+
         .hero {
-          transform: none;
+          border-radius: 20px;
         }
 
         .rule {
-          height: 4px;
-          margin: 30px auto;
+          margin: 24px auto;
         }
       }
     </style>
@@ -119,13 +142,13 @@
     <main class="hero">
       <p class="welcome">WELCOME</p>
       <h1>Inderjeet Yadav</h1>
-      <p class="subtitle">Salesforce Architect &amp; Developer</p>
+      <p class="subtitle">Senior Salesforce Developer</p>
       <div class="rule" aria-hidden="true"></div>
       <p class="quote">
-        "The best code is no code at all. But when you must write code, make it clean, make it scale, make it
-        last."
+        "I architect trust into every Salesforce workflow, turning complex business goals into scalable,
+        lightning-fast customer experiences."
       </p>
-      <p class="tagline">— Building solutions that stand the test of time</p>
+      <p class="tagline">— Building resilient CRM systems that grow with the business</p>
     </main>
 
     <script>
